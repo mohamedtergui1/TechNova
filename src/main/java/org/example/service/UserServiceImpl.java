@@ -3,6 +3,7 @@ package org.example.service;
 ;
 import org.example.model.User;
 import org.example.repository.UserRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
