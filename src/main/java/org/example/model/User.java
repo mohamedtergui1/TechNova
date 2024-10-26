@@ -1,70 +1,60 @@
 package org.example.model;
 
-import org.example.enums.UserRole;
-import jakarta.persistence.*;  // JPA annotations
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.example.enums.Role;
+
+import java.sql.Date;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
+    @NotBlank(message = "First name is required")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @NotBlank(message = "Last name is required")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @NotBlank(message = "Identification is required")
+    @Column(name = "identification", nullable = false, unique = true)
+    private String identification;
+
+    @NotBlank(message = "Nationality is required")
+    @Column(name = "nationality", nullable = false)
+    private String nationality;
+
+    @NotNull(message = "Registration date is required")
+    @Column(name = "registration_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date registrationDate;
+
+    @NotNull(message = "Expiration date is required")
+    @Column(name = "expiration_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date expirationDate;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Role is required")
     @Column(name = "role", nullable = false)
-    private UserRole role;
+    private Role role;
 
-    // Constructors
-    public User() {
-    }
+    // Constructors, getters, setters
 
-    public User(String username, String password, String firstName, String lastName, String email, UserRole role) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.role = role;
-    }
+    public User() {}
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -83,32 +73,43 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getIdentification() {
+        return identification;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 
-    public UserRole getRole() {
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(Role role) {
         this.role = role;
     }
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", role=" + role +
-                '}';
-    }
-
 }

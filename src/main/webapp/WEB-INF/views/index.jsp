@@ -1,50 +1,21 @@
-<%@ page import="java.util.List" %>
-<%@ page import="org.example.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: Youcode
-  Date: 25/10/2024
-  Time: 00:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="header.jsp" />
+
 <html>
 <head>
-    <title>Title</title>
+    <title>Main Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
 </head>
 <body>
-<h1>List of Users</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%
-        // Retrieve the users list from the request
-        List<User> users = (List<User>) request.getAttribute("users");
-        if (users != null && !users.isEmpty()) {
-            // Iterate over the users and display their details
-            for (User user : users) {
-    %>
-    <tr>
-        <td><%= user.getId() %></td>
-        <td><%= user.getFirstName() %></td>
-        <td><%= user.getEmail() %></td>
-    </tr>
-    <%
-        }
-    } else {
-    %>
-    <tr>
-        <td colspan="3">No users found.</td>
-    </tr>
-    <%
-        }
-    %>
-    </tbody>
-</table>
+<div style="min-height: 90vh" class=" flex justify-center  flex-col " >
+
+    <jsp:include page="userList.jsp" />
+
+</div>
+
+<jsp:include page="footer.jsp" />
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 </html>
