@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div style="min-height: 90vh" class=" flex justify-center  flex-col " >
+<div style="min-height: 85vh"  >
 
     <jsp:include page="userList.jsp" />
 

@@ -2,13 +2,13 @@
 <%@ page import="org.example.model.User" %>
 <%@ page import="org.example.enums.Role" %>
 
-<jsp:include page="validation.jsp"/>
 
-<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 w-full antialiased">
-    <div class="text-center text-5xl pb-24 bolder ">
+
+<section >
+    <div class="text-center py-12 font-bold text-5xl bolder ">
         Mange Users
     </div>
-    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+    <div class=" lg:px-12">
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -39,7 +39,7 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                   d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/>
                         </svg>
-                        Add product
+                        Add user
                     </button>
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                         <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
@@ -179,10 +179,12 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-4 py-4">ID</th>
-                        <th scope="col" class="px-4 py-3">Username</th>
                         <th scope="col" class="px-4 py-3">First Name</th>
                         <th scope="col" class="px-4 py-3">Last Name</th>
-                        <th scope="col" class="px-4 py-3">Email</th>
+                        <th scope="col" class="px-4 py-3">Identification</th>
+                        <th scope="col" class="px-4 py-3">Nationality</th>
+                        <th scope="col" class="px-4 py-3">Registration Date</th>
+                        <th scope="col" class="px-4 py-3">Expiration Date</th>
                         <th scope="col" class="px-4 py-3">Role</th>
                         <th scope="col" class="px-4 py-3">
                             <span class="sr-only">Actions</span>
@@ -204,19 +206,16 @@
                         for (User user : users) {
                     %>
                     <tr class="border-b dark:border-gray-700">
-                        <th scope="row"
-                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= user.getId() %>
+                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= user.getId() %>
                         </th>
-                        <td class="px-4 py-3"><%= user.getId() %>
-                        </td>
-                        <td class="px-4 py-3"><%= user.getFirstName() %>
-                        </td>
-                        <td class="px-4 py-3 max-w-[12rem] truncate"><%= user.getLastName() %>
-                        </td>
-                        <td class="px-4 py-3"><%= user.getNationality() %>
-                        </td>
-                        <td class="px-4 py-3"><%= user.getRegistrationDate() %>
-                        </td>
+                        <td class="px-4 py-3"><%= user.getFirstName() %></td>
+                        <td class="px-4 py-3 max-w-[12rem] truncate"><%= user.getLastName() %></td>
+                        <td class="px-4 py-3"><%= user.getIdentification() %></td>
+                        <td class="px-4 py-3"><%= user.getNationality() %></td>
+                        <td class="px-4 py-3"><%= user.getRegistrationDate() %></td>
+                        <td class="px-4 py-3"><%= user.getExpirationDate() %></td>
+                        <td class="px-4 py-3"><%= user.getRole() %></td>
 
                         <td class="px-4 py-3 flex items-center justify-end">
                             <button id="<%= user.getId() %> user.getId() %>-button"
@@ -324,7 +323,7 @@
                             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                                 <!-- Modal header -->
                                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update Product</h3>
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update User</h3>
                                     <button type="button"
                                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                             data-modal-toggle="<%= user.getId() %>">
@@ -400,7 +399,7 @@
                                                 <option value="EMPLOYEE" <%= user.getRole() == Role.EMPLOYEE ? "selected" : "" %>  >
                                                     EMPLOYEE
                                                 </option>
-                                                <option value="MANAGER"  <%= user.getRole() == Role.ADMIN ? "selected" : "" %>  >
+                                                <option value="ADMIN"  <%= user.getRole() == Role.ADMIN ? "selected" : "" %>  >
                                                     ADMIN
                                                 </option>
                                                 <option value="USER"  <%= user.getRole() == Role.USER ? "selected" : "" %>  >
@@ -412,7 +411,7 @@
                                     <div class="flex items-center space-x-4">
                                         <button type="submit"
                                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Create User
+                                            Update User
                                         </button>
                                         <button type="reset"
                                                 class="text-gray-600 inline-flex items-center hover:text-white border border-gray-600 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">
@@ -446,7 +445,7 @@
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Product</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add User</h3>
                 <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-target="createProductModal" data-modal-toggle="createProductModal">
@@ -504,7 +503,7 @@
                         <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                             Role</label>
                         <select id="role" name="role"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="EMPLOYEE">EMPLOYEE</option>
                             <option value="ADMIN">ADMIN</option>
                             <option value="USER">USER</option>
@@ -527,14 +526,3 @@
     </div>
 </div>
 
-
-<script>
-    document.getElementById("simplesearch").addEventListener('input', (e) => {
-        fetch("search?query=" + e.target.value).then(response => {
-            return response.json()
-        }).then(responseJson => {
-            console.log(responseJson);
-        })
-    })
-
-</script>

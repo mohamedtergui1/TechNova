@@ -3,13 +3,14 @@ package org.example.service;
 import org.example.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     List<User> getUsers();
 
     void saveUser(User user);
 
-    User getUserById(Long id);
+    Optional<User> getUserById(Long id);
 
     void updateUser(User user);
 

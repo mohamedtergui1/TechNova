@@ -33,3 +33,6 @@
         </div>
     </div>
 </nav>
+
+<jsp:include page="validation.jsp"/>
+<jsp:include page="messageSuccess.jsp"/>

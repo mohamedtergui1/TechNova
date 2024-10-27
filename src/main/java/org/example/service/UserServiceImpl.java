@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     UserRepository repository;
@@ -24,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long id) {
-        return repository.getReferenceById(id);
+    public Optional<User> getUserById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
